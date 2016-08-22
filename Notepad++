@@ -1,0 +1,89 @@
+Notepad++ => Shortcuts:
+----------------------
+
+Editing Shortcuts:
+
+cntl + X => cut
+cntl + C => copy
+cntl + V => paste
+
+cntl + A => select all
+cntl + Z => undo
+cntl + Y => redo
+
+cntl + F => find
+cntl + H => replace
+cntl + S => save
+cntl + O => open
+
+cntl + N => open new tab
+cntl + W => close current tab
+
+cntl + B => match brackets
+cntl + G => goto
+
+F11 => full screen
+F12 => post-it mode [no tap/down tool bar]
+
+tab => indent
+shift + tab => remove indent
+
+cntl + shift + up key => move current line up
+cntl + shift + down key => move current line down
+
+cntl + shift + U => to upper case
+cntl + U => to lower case
+
+cntl + D => duplicate current line
+cntl + L => cut current line
+cntl + shift + L => delete current line
+
+cntl + T => switch current line with previous line
+cntl + J => join lines
+
+cntl + Q => toggle line comment
+cntl + shift + Q => block comment
+
+alt + mouse drag => column select
+alt + C => column editor
+
+alt + F4 => exit notepad
+
+cntl + page up => previous tab
+cntl + page down => next tab
+
+cntl + backspace => delete to start of word
+cntl + delete => delete to end of word
+
+cntl + shift + backspace => delete to start of line
+cntl + shift + delete => delete to end of line
+
+cntl + alt + enter => create blank line above current line
+cntl + alt + shift + enter => create blank line below current line
+
+cntl + enter => word completion
+cntl + space => function list
+
+cntl + alt + R => right oriented text
+cntl + alt + L => left oriented text [default]
+
+cntl + shift + T => open recently closed tab
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
