@@ -1,0 +1,235 @@
+VIM => Shortcuts:
+----------------
+
+1. Has 2 modes 
+	a) NORMAL(to navigate, use ESC key) 
+	b) INSERT (to edit, use I key)
+2. Home Row Keys(h,j,k,l) For Navigation 
+	[ Left(H) - Right(L) ]
+	[ Down(J) - Up(K) ]
+3. Navigation Movements, CAPS for BLANKS, word=group-of-character-including-underscore, word may be surrounded by other characters
+	a) W moves to the start of next word(after a BLANK)
+	b) B moves to the begining of previous word
+	c) E moves to the end of current/next word(before a BLANK)
+	d) GE moves to the end of previous word
+	e) w moves to the start of next word
+	f) e moves to the end of current/next word
+4. Navigation Movements With Numbers
+	a) 3W is same as pressing W three times.
+	b) 5E is same as pressing E five times.
+	c) 7K is same as pressing K seven times.
+	d) 9L is same as pressing L nine times.
+5. Insert Repeated Literals
+	a) 30I-ESC is same as pressing I thirty times in INSERT mode.
+	g) 4GOI-ESC is same as pressing GO four times in INSERT mode.
+6. FIND Next Occurence Of A CHARACTER (in same line + case sensitive)
+	a) fO finds next O
+	b) FO finds previous O
+	c) 3fO finds next third O
+	d) t., goes to just before .
+	e) t!, goes to just before !
+	f) T", goes to just after "
+	g) ;, consecutive next occurrence
+	h) , consecutive previous occurence
+	i) T and F, for backward
+	j) T encloses like quotes
+	k) d2t., deletes the line till before second dot character
+	l) tr, goes to just before r (unTil r)
+7. % to find matching bracket round, flower, square.
+8. To Reach The Ends Of A Line
+	a) 0 pressing zero is same as pressing HOME
+	b) $ pressing dollor is same as pressing END
+	c) ^ pressing cap goes to first-non-blank character
+	d) g_ goes to last-non-blank character
+9. Find The Next Occurrence Of Word Under CURSOR
+	a) * to find next
+	b) # to find previous
+	c) n or N, use for next words (i fig out its a search s/c)
+10. File Ends
+	a) gg for moving to the BEGIN of the file(like cntl+home)
+	b) G for moving to the END of the file(like cntl+end)
+	c) 10G for moving the CURSOR to the BEGIN of tenth line
+	d) :4 for moving the CURSOR to fourth line
+11. To Search USE / Or ?
+	a) /text + ENTER, searches for text keyword, n -> next occurrence; N -> previous occurrence
+	b) ?text + ENTER, reverse searches for text keyword, n -> previous occurrence; N -> next occurrence 
+12. To INSERT NEW LINE
+	a) o inserts a line below the current line + takes you to INSERT mode.
+	b) O inserts a line above the current line + takes you to INSERT mode.
+13. To DELETE A Character
+	a) x deletes the current character and moves left, if it is END of the word(like BACKSPACE)
+	b) x deletes the current character and moves right, if it is BEGIN of the word(like DELETE)
+14. To REPLACE Character Under CURSOR -> r for REPLACE and c for CHANGE
+	a) r then type the new character, done without INSERT mode
+	b) ce, to replace till the end of word
+	c) c$, to replace till the end of line
+	d) R, to replace continously, REPLACE MODE
+	e) c/here, changes till the word 'here', using search as a motion
+15. To DELETE/CUT, first D then other COMBI WORD
+	a) D to DELETE
+	b) DW to DELETE previous word
+	c) D2E to DELETE next two words
+	d) DD to DELETE entire line
+	e) P to PASTE the deleted one, before cursor
+	f) D$ to DELETE the rest of the line
+	g) D0 to DELETE the till the begin of the line
+	h) D[n][movement/navigation] to DELETE as per the w,e,b,h,j,k,l
+	i) yy, to copy current line or 0y$
+	j) p, paste after cursor
+	k) dap, delete a paragraphs(paragraph is a text object)
+	l) das, delete a sentence
+	m) d%, delete in the bracket,if cursor is on the brace
+16. To REPEAT a command use DOT .
+	a) d2w to delete two words, then .(DOT) to REPEAT it.
+	b) 3., repeats the last command 3 times 
+	c) N<command>, 2dd or 4ihello
+	d) . can remember <insert>do-some-stuff<exit> (r,R,c,a,A,s,i are ways to insert)
+17. To SELECT text in VISUAL mode
+	a) v to enter into VISUAL mode
+	b) select text by using the movement/navigation keys
+	c) :'<,'>w filename, save selected text into new file (you dont need to type angular brackets)
+	d) y2/foo, yank upto second occurrence of foo. (yank or delete or visual can be used)
+	e) v15j, select 15 lines down
+	f) gv, to reselect the same selection (if we missed or lost or to redo)
+18. MISTAKES
+	a) u, for UNDO
+	b) cntl+r, for REDO
+19. AUTO COMPLETION
+	a) cntl+n, next word
+	b) cntl+p, previous word
+20. EXIT commands
+	a) :w, to save
+	b) :q, to quit
+	c) :q!, to quit without saving
+	d) :wq, to save and quit, ZZ or :x does the same
+	e) :w filename, to saveas into filename
+21. SPLIT windows
+	a) :split or :sp -> for horizontal split
+	b) :vsplit or :vsp -> for vertical split
+	c) cntl+ww to switch between splits
+	d) cntl+w + j, switch to down split (others directions valid)
+22. APPEND, a A, similar to i, but directly takes you to the POSITION
+	a) a, append NEXT TO CURSOR
+	b) A, append at the END OF LINE
+	c) i, append BEFORE the CURSOR
+23. TRACK your cursor movement (if you feel lost)
+	a) cntl+i, takes you to forward cursor position
+	b) cntl+o, takes you to previous cursor position
+	c) cntl+g, shows current postion of cursor
+24. EXECUTE external command
+	a) :!, then type the command
+	b) :!ls, prints ls output
+25. SUBSTITUE a pattern (similar to FIND REPLACE)
+	a) :s/find/replace,	replaces one occurrence
+	b) :s/find/replace/g, replaces all occurrences in a line
+	c) :s/find/replace/gc, replaces all occurrences in a file with confirmation
+	d) :#,#s/find/replace/gc, replaces in #,# range of numbered lines with confirmation
+26. EXTERNAL output
+	a) :r filename, prints that filename output below the cursor
+	b) :r! ls, prints the commands output below the cursor
+27. COPY, here its YANK
+	a) y, to copy
+	b) yw, copy one word
+	c) y$, copy till end, all movements possible
+	d) use visual mode to select and copy
+28. SET OPTIONS, Typing ":set xxx" sets the option "xxx".  Some options are:
+        'ic' 'ignorecase'       ignore upper/lower case when searching
+        'is' 'incsearch'        show partial matches for a search phrase
+        'hls' 'hlsearch'        highlight all matching phrases
+     You can either use the long or the short option name.
+	 :set noic, to unset
+29. HELP
+	a) F1
+	b) :help
+	c) :help w
+	d) :help user-manual
+	e) :e, then press cntl+d for option, use <TAB> also
+	f) :help usr_02.txt, all good commands
+	g) cntl+], to follow links/tags, search through tags
+	h) cntl+o, to jump back
+	i) :helpgrep, to search in help
+	j) :cwindow, to put the results in a new window
+	k) cntl+n/cntl+p, for next/previous in help
+30. CASE, use VISUAL mode, SELECT text
+	a) gU, turns uppercase
+	b) gu, turns lowercase
+31. INDENTS
+	a) >>, to indent
+	b) <<, to remove indent
+	c) >>.., to indent 3 times
+	d) 4>>.., to indent 4 lines 3 times
+	e) cntl+t, to indent in insert-mode
+	f) cntl+d, to unindent in insert-mode
+	g) select + >, to indent in visual-mode/motions/text-objects
+	h) select + <, to unindent in visual-mode/motions/text-objects
+32. SELECT within SOMETHING, Suppose the cursor is on the first o of (map (+) ("foo")).
+	a) vi" → will select foo.
+	b) va" → will select "foo".
+	c) vi) → will select "foo".
+	d) va) → will select ("foo").
+	e) v2i) → will select map (+) ("foo")
+	f) v2a) → will select (map (+) ("foo"))
+	g) <action>a<object>, all with LIMIT/brace
+	h) <action>i<object>, all without LIMIT/brace
+	i) viw → will select a word.
+	j) v2iw → will select 2 words.
+	k) vis → will select a sentence.
+	l) use them with d (delete) or y (yank) also
+33. COMMENT or PRE-FIX
+	1) cntl+v, to start select (visual select)
+	2) G, to go till end
+	3) I, caps i to insert
+	4) --, comment or anything to prefix
+	5) <ESP>, press escape
+34. SUFFIX
+	1) cntl+v, to start select (visual select)
+	2) j, use it to select down
+	3) $, to move to end
+	4) A, caps a, to insert at end
+	5) ##, type anything
+	6) <ESP>, press escape
+35. DISABLE arrow keys
+	a) add the below commands in .vimrc file, if its not there create it in home dir
+		nnoremap <up> <nop>
+		nnoremap <down> <nop>
+		nnoremap <left> <nop>
+		nnoremap <right> <nop>
+	b) add the below commands in .vimrc file, for any text feedback
+		nnoremap <up> :echo "No More Arrow Keys" <CR>
+36. LINE NUMBERS
+	1) In Normal Mode
+	2) type ':set number', this will enable line numbers.
+37. VISIBLE tabs
+	1) :set list
+	2) :set listchars=tab:>-
+	3) to insert unicode, 'cntl+v' then 'u' then code like '00b7'
+	4) :set listchars=tab:»·
+	5) these are unicodes, speacial characters, » is double-arrow '00bb',· is middle-dot '00b7'
+	6) using unicodes helps us not to mix the code and letters, less confusion
+38. VERSION, :version
+39. LOADED scripts/files
+	a) :scriptnames
+40. NAVIGATiON
+	a) PageUp -> full page up
+	b) PageDown -> full page down
+	c) cntl+u -> half page up
+	d) cntl+d -> half page down
+	e) H -> highest part in the current page view
+	f) M -> middle part in the current page view
+	g) L -> lowest part in the current page view
+41. OPEN command history buffer
+	a) ':help c' then cntl+f
+42. COLORSCHEME
+	a) :colo <space> cntl+d
+	
+NOTE: There are 
+		  NO Icons
+		, NO Menus
+		, NO Mouse Clicks
+		, NO Tabs
+		, NO Close Button
+		, Not Just shift+cntl+alt+tab hot keys, everykey is a hot key, cryptic
+		, NO familiar shortcuts, cntl+c!=copy, cntl+x!=cut, cntl+z!=undo
+		, NO GUI, NO Pointers
+		, NO ToolTips, NO Guides
+	Other editors have shortcuts to do things. Here we have to do everything with shortcuts only.
