@@ -1,5 +1,6 @@
 VIM => Shortcuts:
 ----------------
+Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 
 1. Has 2 modes 
 	a) NORMAL(to navigate, use ESC key) 
@@ -11,7 +12,7 @@ VIM => Shortcuts:
 	a) W moves to the start of next word(after a BLANK)
 	b) B moves to the begining of previous word
 	c) E moves to the end of current/next word(before a BLANK)
-	d) GE moves to the end of previous word
+	d) ge moves to the end of previous word
 	e) w moves to the start of next word
 	f) e moves to the end of current/next word
 4. Navigation Movements With Numbers
@@ -37,10 +38,10 @@ VIM => Shortcuts:
 	l) tr, goes to just before r (unTil r)
 7. % to find matching bracket round, flower, square.
 8. To Reach The Ends Of A Line
-	a) 0 pressing zero is same as pressing HOME
-	b) $ pressing dollor is same as pressing END
-	c) ^ pressing cap goes to first-non-blank character
-	d) g_ goes to last-non-blank character
+	a) 0 pressing zero is same as pressing HOME, hard BOL
+	b) $ pressing dollor is same as pressing END, hard EOL
+	c) ^ pressing cap/caret goes to first-non-blank character(till indentation), soft BOL
+	d) g_ goes to last-non-blank character, soft EOL
 9. Find The Next Occurrence Of Word Under CURSOR
 	a) * to find next
 	b) # to find previous
@@ -53,6 +54,11 @@ VIM => Shortcuts:
 11. To Search USE / Or ?
 	a) /text + ENTER, searches for text keyword, n -> next occurrence; N -> previous occurrence
 	b) ?text + ENTER, reverse searches for text keyword, n -> previous occurrence; N -> next occurrence 
+	c) :g//, to print the list-of-matches in search
+	d) :g//#, to print the list-of-matches in search with line numbers
+	e) :nohl, to clear the highlights when you are done
+	f) :hlsearch, to highlight search results
+	g) :incsearch, to highlight dynamic search results(like google)
 12. To INSERT NEW LINE
 	a) o inserts a line below the current line + takes you to INSERT mode.
 	b) O inserts a line above the current line + takes you to INSERT mode.
@@ -79,11 +85,16 @@ VIM => Shortcuts:
 	k) dap, delete a paragraphs(paragraph is a text object)
 	l) das, delete a sentence
 	m) d%, delete in the bracket,if cursor is on the brace
+	n) d(, delete from here till begining of sentence
+	o) d), delete from here till ending of sentence
+	p) d{, delete from here till begining of paragraph
+	q) d}, delete from here till ending of paragraph
 16. To REPEAT a command use DOT .
 	a) d2w to delete two words, then .(DOT) to REPEAT it.
 	b) 3., repeats the last command 3 times 
 	c) N<command>, 2dd or 4ihello
 	d) . can remember <insert>do-some-stuff<exit> (r,R,c,a,A,s,i are ways to insert)
+	e) @:, repeats the last command used in COMMAND-LINE-MODE a.k.a ":do-some-stuff-mode"
 17. To SELECT text in VISUAL mode
 	a) v to enter into VISUAL mode
 	b) select text by using the movement/navigation keys
@@ -91,6 +102,8 @@ VIM => Shortcuts:
 	d) y2/foo, yank upto second occurrence of foo. (yank or delete or visual can be used)
 	e) v15j, select 15 lines down
 	f) gv, to reselect the same selection (if we missed or lost or to redo)
+	g) V, to select line wise
+	h) cntl+v, to select block wise
 18. MISTAKES
 	a) u, for UNDO
 	b) cntl+r, for REDO
@@ -103,11 +116,14 @@ VIM => Shortcuts:
 	c) :q!, to quit without saving
 	d) :wq, to save and quit, ZZ or :x does the same
 	e) :w filename, to saveas into filename
+	f) :qa!, close all without saving
 21. SPLIT windows
-	a) :split or :sp -> for horizontal split
-	b) :vsplit or :vsp -> for vertical split
+	a) :split or :sp or "cntl+w then s" -> for horizontal split
+	b) :vsplit or :vsp or "cntl+w then v" -> for vertical split
 	c) cntl+ww to switch between splits
-	d) cntl+w + j, switch to down split (others directions valid)
+	d) cntl+w + j, switch to down split (other directions also valid)
+	e) :q, quit the window
+	f) :on, quit all other windows
 22. APPEND, a A, similar to i, but directly takes you to the POSITION
 	a) a, append NEXT TO CURSOR
 	b) A, append at the END OF LINE
@@ -150,9 +166,20 @@ VIM => Shortcuts:
 	i) :helpgrep, to search in help
 	j) :cwindow, to put the results in a new window
 	k) cntl+n/cntl+p, for next/previous in help
-30. CASE, use VISUAL mode, SELECT text
-	a) gU, turns uppercase
-	b) gu, turns lowercase
+30. SPLIT SIZE, RESIZE
+	a) http://vimcasts.org/episodes/working-with-windows/
+	b) "cntl+w" then ">", to make window wider
+	c) "cntl+w" then "<", to make window narrower
+	d) "30cntl+w" then ">", to make 30 character extra wider
+	e) "15cntl+w" then "<", to make 15 character extra narrower
+	f) "cntl+w" then "=", to make windows equal size
+	g) http://stackoverflow.com/questions/4368690/how-to-increase-the-vertical-split-window-size-in-vim
+	h) "cntl+w" then "|", to maximize the width of current window
+	i) "cntl+w" then "_", to maximize the height of current window
+	j) "cntl+w" then "r", to rotate the windows
+	j) "cntl+w" then "R", to rotate back the windows
+	k) "cntl+w" then "x", to exchange the current window with next one
+	l) :help cntl+w, to know all about the shortcuts about split windows
 31. INDENTS
 	a) >>, to indent
 	b) <<, to remove indent
@@ -198,8 +225,11 @@ VIM => Shortcuts:
 		nnoremap <up> :echo "No More Arrow Keys" <CR>
 36. LINE NUMBERS
 	1) In Normal Mode
-	2) type ':set number', this will enable line numbers.
-37. VISIBLE tabs
+	2) type ':set number' or ':set nu', this will enable line numbers.
+	3) type ':set nonumber' or ':set nonu', this will disble line numbers.
+	4) type ':set nu!', this will toggle line numbers(show/hide).
+	5) type ':set relativenumber' or ':set rnu', this will enable relative line numbers.(from V.7.3)
+37. VISIBLE TABs
 	1) :set list
 	2) :set listchars=tab:>-
 	3) to insert unicode, 'cntl+v' then 'u' then code like '00b7'
@@ -207,21 +237,109 @@ VIM => Shortcuts:
 	5) these are unicodes, speacial characters, » is double-arrow '00bb',· is middle-dot '00b7'
 	6) using unicodes helps us not to mix the code and letters, less confusion
 38. VERSION, :version
-39. LOADED scripts/files
-	a) :scriptnames
-40. NAVIGATiON
-	a) PageUp -> full page up
-	b) PageDown -> full page down
+39. SCROLL
+	a) zt, move current line to the top
+	b) zz, move the current line to the middle
+	c) zb, move the current line to the bottom
+	d) cntl+e, scroll down
+	f) cntl+y, scroll up
+	g) Lzz, goto bottom of the paget then put the line in center
+40. NAVIGATION
+	a) cntl+b -> full page up
+	b) cntl+f -> full page down
 	c) cntl+u -> half page up
 	d) cntl+d -> half page down
 	e) H -> highest part in the current page view
 	f) M -> middle part in the current page view
 	g) L -> lowest part in the current page view
+	h) 5cntl+f -> move 5 page downs
+	i) 10%, goto 10% of the file
+	j) :10, goto tenth line
+	k) 10|, goto tenth column
 41. OPEN command history buffer
 	a) ':help c' then cntl+f
 42. COLORSCHEME
 	a) :colo <space> cntl+d
-	
+	b) :colo then tab
+	c) :colo mrphy, a good one
+	d) :colo default, a default colorscheme
+43. CASE
+	a) select the text then U, to upper case
+	b) select the text then u, to lower case
+	c) gU, turns uppercase also works
+	d) gu, turns lowercase also works
+	e) ~, tilde is used to toggle one character's case
+44. SUBSTITUE key s
+	a) s, deletes the character under cursor + enters into insert mode
+	b) 4s, deletes the characters under cursor till 4 next + enters into insert mode
+	c) S, substitue a LINE
+45. MARKS or BOOK-MARKS
+	a) ma, to mark a line with letter "a"
+	b) mb, to mark a line with letter "b"
+	c) 'a, to go to the begin of marked line with "a"
+	d) `a, to go to the cursor position of marked line with "a"
+	e) :marks, lists the marks on the file
+	f) :marks c, shows the mark named "c"
+	g) marks available from a-z (lower case) in same file (local)
+	h) marks available from A-Z (upper case) in all files (global)
+	i) d'a, delete till mark-a, we can mix with motions
+	j) y'a, copy till mark-a
+46. DOT FILES, configuration files, .vimrc, get from friends and play
+	a) have plugin info, plugin manager info
+	b) start up scripts, keyboard hotkey mappings
+	c) https://github.com/mscoutermarsh/dotfiles
+	d) https://github.com/thoughtbot/dotfiles
+47. PLUGINS names, can be useful for many reasons
+	a) cntlp, for fuzzy search, %hello%
+	b) nerdTree, for file tree toolbar on left
+	c) AG for VIM, good file seach in VIM
+	d) supertab, must app, tab will do the completion
+	e) syntastic, runtime compile checks like eclipse
+48. MULTI-FILES
+	a) $ vi file1.txt file2.txt file3.txt
+	b) :ls, show how many files opened in vi
+	c) :e file2.txt, opens file2.txt in the current window
+	d) :sp file1.txt, opens and new window with the mentioned file
+49. COMMAND-LINE-MODE, extra commands
+	a) :scriptnames, to list the loaded startup files for vim
+	b) :version, to show the version details
+	c) :help ft-<cntl-d>, lists available syntax_files
+50. PACKAGE MANAGER, for vim plugins
+	a) vundle(r), one place for all vim plugins
+	b) 
+51. BUFFERS, they are just views
+	a) :ls, to show the list of buffers (open files in VIM)
+	b) :bn or :bnext, move to next buffer
+	c) :bp or :bprevious, move to previous buffer
+	d) :e filename, open new file in this buffer
+	e) :bd, delete the current buffer
+52. REGISTERS, they are just handy clipboards
+	a) :reg, to show the list of registers
+	b) "ayy, copy the current line and put in register "a"
+	c) "Ayy, to append to the register "a", we need to use caps-a "A"
+	d) "ap, to paste from register "a"
+	e) a-z, we can use a to z registers, total 26 + numbers too
+	f) cntl+r then a, to paste 'a' content in insert-mode
+	g) :let @a='4dd', to edit a register named 'a' in command line
+53. MACROS, memorizing keystrokes
+	a) qa, to start a recording named 'a'
+	b) dd, type what ever you want, it will be recorded
+	c) q, to stop recording the macro
+	d) @a, to run/play the macro
+	e) "qp, to paste the content in macro just recorded, yes "q is a register which has it
+	f) can edit and put it back in that register again
+54. TABS, for layouts
+	a) :tabe new-file, open new-file in a new tab
+	b) :tabnew, opens new tab
+	c) gt or :tabn, moves to next tab
+	d) gT or :tabp, moves to previous tab
+	e) 4gt, moves to 4th tab
+	f) :tab ball         show each buffer in a tab (up to 'tabpagemax' tabs)
+	g) :tab help         open a new help window in its own tab page
+	h) :tab drop {file}  open {file} in a new tab, or jump to a window/tab containing the file if there is one
+	i) :tab split        copy the current window to a new tab of its own
+	j) http://vim.wikia.com/wiki/Using_tab_pages
+
 NOTE: There are 
 		  NO Icons
 		, NO Menus
@@ -233,3 +351,339 @@ NOTE: There are
 		, NO GUI, NO Pointers
 		, NO ToolTips, NO Guides
 	Other editors have shortcuts to do things. Here we have to do everything with shortcuts only.
+	VIM is more of a language for editing.
+	
+TIPS MANIA:
+-----------
+1. TO DO LIST, mark done
+	1) write your list
+	2) goto "insert mode" then type "done" or any other word then "escape"
+	3) goto new item then "." (yes dot to repeat the typing)
+	4) we can use tick-mark or check-mark (using unicode U+2713) [✓]
+2. TO SCREEN CAST
+	a) use SCREENKEY, a tool which shows what key you pressed
+	b) https://github.com/wavexx/screenkey
+3. Use VIM to explain instead on NOTEPAD.
+4. TERMINOLOGY
+	a) Splits are Windows
+	b) Buffers are Tabs
+	c) Tabs are Layouts
+	d) Windows are used to see buffers (file loaded in memory)
+	e) Tabs are used to arrange the Windows (for differnt views/projects)
+	f) buffers are mapped to files
+	g) Tab is not meant for a single file
+5. UNDERLINE
+	1) goto the heading
+	2) yyp, copy current line and duplicate it
+	3) V, visual select the line
+	4) r=, replace line wiht "=" characters
+	5) in short you can write yypVr=
+	
+issue with delete key
+ESC from INSERT, moves the CURSOR to one space LEFT
+how to identify tabs and paragraphs
+what are !,registers,plugins,folds,scripts,syntax_files,text-objects,marks,dotfiles,plugin-manager,macros,tab?
+relative numbering of lines
+zoom-in and zoom-out
+color column, guideline to limit the line
+programming the editor, vimscript, our own functions
+edit compressed zip files
+spell check, vimdiff, auto spell correction
+what are buffers?
+what are leader keys?
+.viminfo file maintains your history, what you did to it, all movements
+task-> change tail commas to leading commas without arrow keys
+$ vimtutor
+
+http://vim-adventures.com/quiz/	-- free quiz
+http://vim-adventures.com/	-- an amazing game asks you to learn many things, first 3 levels free
+http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/
+http://stackoverflow.com/questions/7579213/is-there-an-interactive-way-to-learn-vim
+http://vimhelp.appspot.com/vim_faq.txt.html
+https://www.youtube.com/user/sopier/videos		-- good vim/bash/emacs tutorials
+read the comments, they are adding a lot of value to VIM in blogs and websites
+https://www.youtube.com/watch?v=wlR5gYd6um0		-- mastering vim, great talk
+http://www.vimgenius.com/lessons/vim-intro			-- vim quiz
+
+VIM - Bram Moolenaar, 1991
+VI  - Bill Joy, 1976 
+
+R not supported in game
+1-Vim-Quiz:Cheat Sheet 123 strokes
+1. cursor is in 11th line
+2. 0, to move to begining of the line
+3. 4k, to move to 7th line
+4. 4dd, to delete 4 lines (current line + next 3 lines)
+5. 5j, to move to 12th line
+6. 3dd, to delete 3 lines (current line + next 2 lines)
+7. d3w, to delete 3 words
+8. k, to move up
+9. 4w, to move to 4th word
+10. d$, to delete the line till the end
+11. G, to go to last line
+12. o, to insert a line below it
+13. 2k, to move 2 lines up
+14. 4w, to move to 4th word
+15. d$, to delete till the end
+16. A, to append at the end of the line
+17. /1s, to locate the words
+18. x, to delete the character
+19. i, to insert
+20. n, to move to the next search
+21. x, to delete the character
+22. i, to insert
+23. 15k, to move 15 lines up
+24. de, to delete the word (dunno why dw not working)
+25. 3j, to move 3 lines down
+26. A, to append at the end of the line
+27. 0, to go to begining of the line
+28. /z, to search for z
+29. r, to replace
+30. n, to find next
+
+2-Vim-Quiz:Cheat Sheet 106 strokes
+1. cursor is in 11th line
+2. 0, to move to begining of the line
+3. 4k, to move to 7th line
+4. 4dd, to delete 4 lines (current line + next 3 lines)
+5. 5j, to move to 12th line
+6. 3dd, to delete 3 lines (current line + next 2 lines)
+7. d3w, to delete 3 words
+8. k, to move up
+9. 4w, to move to 4th word
+10. d$, to delete the line till the end			-- 19 keystrokes
+11. 7k, to move 7 lines above
+12. 0, to move to begining
+13. i, to insert
+14. A, to append in end of line
+15. gg, to move to beinging of file
+16. 5w, to move 5 words (but why 5? whynot 4)
+17. ce, to change the word
+18. /z, to search for z
+19. r, replace
+20. n, next found word							-- 63 keystrokes
+21. /1s, to search 1s
+22. x, to delete
+23. i, to insert
+24. k, to move one line down
+25. 2w, to move 2 words
+26. c$, to change till end of line				-- 96 keystrokes
+27. j, to move down one line
+28. o, to insert a line below
+
+3-Vim-Quiz:Cheat Sheet 96 strokes
+1. gg, go to first line
+2. 5w, moves 5 words
+3. cw, deletes the word + insert mode
+4. crazy, type crazy
+5. *ESC*, escape			-- 12
+6. /z + *ENTER*, to find z
+7. rs, to replace with s
+8. n, to find next z (rs n rs n rs)		-- 26
+9. 0, begining of line
+10. i, insert mode
+11. in , type 'in '
+12. A, to append
+13. ones, type ' ones'		-- 39
+14. 3j, move 3 line down
+15. 4dd, delete 4 lines 			-- 44
+16. 4j
+17. 4w
+18. d$		-- 50
+19. j
+20. 3dd
+21. d3w
+22. /1s
+23. enter
+24. s
+25. one
+26. n
+27. s
+28. one
+29. j
+30. 2w
+31. c$
+32. they can
+33. j
+34. o
+35. who do.				-- 96
+
+4-vim: 89 keystrokes
+gg
+5w
+cw
+'crazy'
+<ESP>
+/z
+<ENTER>
+rs
+n
+.
+n
+.
+n
+.
+0
+i
+'in '
+A
+' ones'
+3j
+4dd
+4j
+4w
+d$
+j
+3dd
+d3w
+/1s
+<ENTER>
+s
+'one'
+<ESP>
+n
+.
+j
+2w
+c$
+'they can'
+j
+o
+'who do.'		--89
+
+5-VIM:
+gg
+5w
+cw
+crazy
+<ESC>
+/z
+<ENT>
+rs
+n.
+n.
+n.
+3j
+4dd		--41
+/A
+<ENT>
+d$
+j
+3dd
+d3w		--53
+/1
+s
+one
+n.
+j2w
+c$
+they can
+<ESC>
+j
+o
+who do.
+<ESC>	--87
+
+6-VIM:
+H		-- change
+5w
+cw
+crazy
+<ESC>
+/z
+<ENT>
+rs
+n.
+n.
+n.
+A
+' ones'
+<ESC>
+I		-- change
+'in '
+<ESC>
+3j
+4dd		--40
+/A
+<ENT>
+d2as		--47 -- change, further "d2)"
+/1
+s
+one
+n.
+j2w
+C
+they can
+<ESC>
+j
+o
+who do.
+<ESC>	--79
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
