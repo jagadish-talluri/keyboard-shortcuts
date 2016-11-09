@@ -21,8 +21,8 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	c) 7K is same as pressing K seven times.
 	d) 9L is same as pressing L nine times.
 5. Insert Repeated Literals
-	a) 30I-ESC is same as pressing I thirty times in INSERT mode.
-	g) 4GOI-ESC is same as pressing GO four times in INSERT mode.
+	a) 30ohi-ESC is same as typing "hi" thirty times in INSERT mode on every line.
+	g) 4igo-ESC is same as typing "go" four times in INSERT mode.
 6. FIND Next Occurence Of A CHARACTER (in same line + case sensitive)
 	a) fO finds next O
 	b) FO finds previous O
@@ -63,13 +63,13 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	a) o inserts a line below the current line + takes you to INSERT mode.
 	b) O inserts a line above the current line + takes you to INSERT mode.
 13. To DELETE A Character
-	a) x deletes the current character and moves left, if it is END of the word(like BACKSPACE)
+	a) X deletes the current character and moves left, if it is END of the word(like BACKSPACE)
 	b) x deletes the current character and moves right, if it is BEGIN of the word(like DELETE)
 14. To REPLACE Character Under CURSOR -> r for REPLACE and c for CHANGE
 	a) r then type the new character, done without INSERT mode
-	b) ce, to replace till the end of word
+	b) ce, to replace till the end of word, *play with BACKSPACE and see the awesomeness*
 	c) c$, to replace till the end of line
-	d) R, to replace continously, REPLACE MODE
+	d) R, to replace continously, REPLACE MODE, *play with BACKSPACE and see the awesomeness*not in 7.3
 	e) c/here, changes till the word 'here', using search as a motion
 15. To DELETE/CUT, first D then other COMBI WORD
 	a) D to DELETE
@@ -128,6 +128,7 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	a) a, append NEXT TO CURSOR
 	b) A, append at the END OF LINE
 	c) i, append BEFORE the CURSOR
+	d) I, append at the BEGIN OF LINE
 23. TRACK your cursor movement (if you feel lost)
 	a) cntl+i, takes you to forward cursor position
 	b) cntl+o, takes you to previous cursor position
@@ -140,7 +141,9 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	b) :s/find/replace/g, replaces all occurrences in a line
 	c) :s/find/replace/gc, replaces all occurrences in a file with confirmation
 	d) :#,#s/find/replace/gc, replaces in #,# range of numbered lines with confirmation
-26. EXTERNAL output
+	e) :%s/find/replace/gc, replaces entire file with confirmation
+	f) &, to repeat the substitution/replace-next (like 'n' in search/find-next)
+26. EXTERNAL output, RETRIEVE or READ command, AWESOME command
 	a) :r filename, prints that filename output below the cursor
 	b) :r! ls, prints the commands output below the cursor
 27. COPY, here its YANK
@@ -166,6 +169,7 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	i) :helpgrep, to search in help
 	j) :cwindow, to put the results in a new window
 	k) cntl+n/cntl+p, for next/previous in help
+	l) :h motion.txt
 30. SPLIT SIZE, RESIZE
 	a) http://vimcasts.org/episodes/working-with-windows/
 	b) "cntl+w" then ">", to make window wider
@@ -243,7 +247,7 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	c) zb, move the current line to the bottom
 	d) cntl+e, scroll down
 	f) cntl+y, scroll up
-	g) Lzz, goto bottom of the paget then put the line in center
+	g) Lzz, goto bottom of the page	 then put the line in center
 40. NAVIGATION
 	a) cntl+b -> full page up
 	b) cntl+f -> full page down
@@ -256,8 +260,11 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	i) 10%, goto 10% of the file
 	j) :10, goto tenth line
 	k) 10|, goto tenth column
+	l) gj or gk to move cursor up/down on wrapped line text
+	m) 'g;' or 'g,' to move cursor in the last edit locations(recent changelist) back or forth
 41. OPEN command history buffer
 	a) ':help c' then cntl+f
+	b) q:, this can also open the command history
 42. COLORSCHEME
 	a) :colo <space> cntl+d
 	b) :colo then tab
@@ -319,8 +326,11 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	c) "Ayy, to append to the register "a", we need to use caps-a "A"
 	d) "ap, to paste from register "a"
 	e) a-z, we can use a to z registers, total 26 + numbers too
-	f) cntl+r then a, to paste 'a' content in insert-mode
+	f) cntl+r then a, to paste 'a' content in insert-mode, VVIMP, any register is usable
+	f) cntl+r 0, to paste '0' content in insert-mode, VVIMP, any register is usable
 	g) :let @a='4dd', to edit a register named 'a' in command line
+	h) "%, this register has current-file-name
+	i) :h registers
 53. MACROS, memorizing keystrokes
 	a) qa, to start a recording named 'a'
 	b) dd, type what ever you want, it will be recorded
@@ -328,6 +338,8 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	d) @a, to run/play the macro
 	e) "qp, to paste the content in macro just recorded, yes "q is a register which has it
 	f) can edit and put it back in that register again
+	g) :normal @q, apply macro q on visual selection
+	h) @@, to repeat last executed macro, similar to dot in macro world
 54. TABS, for layouts
 	a) :tabe new-file, open new-file in a new tab
 	b) :tabnew, opens new tab
@@ -339,7 +351,35 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	h) :tab drop {file}  open {file} in a new tab, or jump to a window/tab containing the file if there is one
 	i) :tab split        copy the current window to a new tab of its own
 	j) http://vim.wikia.com/wiki/Using_tab_pages
-
+55. FILTER, ! char is special meaning char
+	a) be in line 1, then '!10G', goes to 10th line with anticipation, 'sort' it sorts the selected text
+	b) !, we can use this to perform outside programs in side, select text is input to outside program
+	c) output from outside program replaces the selected text
+	d) !!, for commands doesn't read standard input
+	e) '!!ls' prints ls content in the editor
+	f) '!!date' prints date in the editor, useful for loggin
+	g) always replaces the current selected text
+	h) !, means force
+56. MNEMONICS
+	a) ), next sentence
+	b) (, previous sentence
+	c) }, next paragraph
+	d) {, previous paragraph
+	e) aw, a word
+	f) as, a sentence
+	g) ap, a paragraph
+	h) ci', change inner quotes or find next set of inner quotes and change inside it
+57. ARG LIST
+	a) :arg, to show the files in your current arglist
+	b) :argdo, to run a command on your arglist
+	c) :argadd or :arga, to add files to your arglist
+	d) :argdelete or :argd, to remove files from your arglist
+	e) :argdo update, to save all changes to your arglist
+	f) :argdo undo, to undo changes to your arglist
+	g) :argdo %s/sam/bob/g, to replace in all the files in arg
+	h) :arga names.rb, to add names.rb file to the arglist
+	i) :argd *, to clear the arglist
+	
 NOTE: There are 
 		  NO Icons
 		, NO Menus
@@ -363,6 +403,7 @@ TIPS MANIA:
 2. TO SCREEN CAST
 	a) use SCREENKEY, a tool which shows what key you pressed
 	b) https://github.com/wavexx/screenkey
+	c) KEYCAST, for mac
 3. Use VIM to explain instead on NOTEPAD.
 4. TERMINOLOGY
 	a) Splits are Windows
@@ -378,32 +419,247 @@ TIPS MANIA:
 	3) V, visual select the line
 	4) r=, replace line wiht "=" characters
 	5) in short you can write yypVr=
+6. REPEATITION, delete spaces before the lines
+	1) copy and paste mobaxterm content
+	2) qa, to start recording a macro with "a"
+	3) 0, to go to front
+	4) dw, delete till first word
+	5) j, go to next line
+	6) q, to stop recording
+	7) @a, to execute the recorded macro
+	8) 10@a, to execute the recorded macro 10 times for 10 lines
+7. MISC
+	a) ggVG, to select an entire file
+	b) J, join lines
+	c) cntl+a/cntl+x, increments/decrements a value 
+	d) cntl+r =5*5, puts 25 in insert mode, use as mini calculator
+8. PASTE
+	a) when you delete/copy entire line, you can keep the cursor any where in the line to paste it. it just works.
+	b) you dont need to go to the first char and do "P"
+	c) 2p can paste twice
+9. BLACK HOLE REGISTER
+	a) "_ (it is underscor)
+	b) what ever goes to this register its gone
+	c) use it when you dont want your delete to disturb the existing registers
+10. inside INSERT MODE
+	a) cntl+w, delete a word backwards in insert mode
+	b) cntl+u, delete from cursor to begining of line
+	c) cntl+o, run a normal command and come back to insert mode in one shot
+	d) cntl+r THEN 0, to paste copied text in insert mode, 0 is yank register 
+	e) cntl+r THEN =, to calculate on the fly inside insert mode (cntl+p has earlier calculations)
+	f) cntl+v THEN 065, to insert A in insert mode (insert a char using character code)
+11. CASE, select then
+	a) gU, make upper case
+	b) gu, make lower case
+	c) ~, toggle word or letter or selection (moves cursor to next letter after toggles)
+	d) g~, also does the same but why 'g' prefix
+12. MISC
+	a) cntl + a, increments a number
+	b) cntl + x, decrements a number
+	c) S or cc, to delete a line and replace with new text
+13. GRAMMER -> ACTION-COUNT-MOTION/MNEMONICS
+	a) daw, delete a word -> also use dw
+	b) d2w, delete 2 words
+	c) d9w, delete 9 words
+14. MNEMONICS
+	a) daw, delete a word
+	b) das, delete a sentence
+	c) dap, delete a paragraph
+15. UN-Categorize
+	a) vim -u NONE -N, start up vim without any vimrc but still nocompatible
+	b) vit, target contents of a tag
+	c) ]c[c, vimdiff jump to prev next change
+	d) ]c do, vimdiff obtain from other window
+	e) ]c dp, vimdiff paste to other window
+	f) :diffup, vimdiff update colors
+	g) cntl+r THEN cntl+P THEN register_name, to paste in insert-mode, but why cntl+p needed?
+	h) ga, find the numeric value for the char under the cursor(ascii, hex, octal)
+	i) cntl+k THEN char1 THEN char2, insert a diagraph
+	j) :diagraphs, to list the diagraphs available in the system
+	k) cntl+p, up/previous in command mode to browse the earlier command
+	l) cntl+n, down/next in command mode to browse the next command
+	m) gR, takes you to virtual replace mode, what is it?
+	n) gv, reselect the last visual selection
+	o) o, after visual selection, how to move to other end? ***
+	p) :$, jump to end of file, command line way
+	q) :6t., copies line 6 to just below current line ***
+	r) :t6, copy the current line to just below line 6
+	s) :t., duplicate the current line in command mode
+	t) :t$, copy current line to the end of the file
+	u) :'<,'>t0, copy visual select lines to start of the file(t -> copy)
+	v) :'<,'>m0, move visual select lines to start of the file(m -> move)
+	w) @:, repeat the last ex command
+	x) @@, repeat the earlier macro many again
+	y) :'<,'>normal P, to apply a normal command to a visual selection ***
+	z) cntl+d, tabl completion in command mode ***
+16. UN-Known
+	a) :cntl+r AND cntl+w, to copy the word under the cursor to the command mode
+	b) :cntl+r AND cntl+a, to copy the WORD under the cursor to the command mode
+	c) q:, opens a window containg the commands history from normal mode
+	d) cntl+f, opens a window of history commands from command mode
+	e) q/, opens a window of search patters used till now
+	f) %, short hand name for file name in command line mode
+	g) :read!ls, paste the output of a command in the buffer (use any command)
 	
+	
+	
+TEST:
+====
+1. add commas in the end of each line(simillarly add comments too)
+
+--text.txt
+hi
+hello
+how
+are
+you
+
+--new-text.txt
+hi,
+hello,
+how,
+are,
+you,
+
+Ans: A + , + ESC
+	 then '.' dot to repeat it
+	 
+	For adding comments: I + -- + ESC
+						 then '.' dot to repeat it
+						 
+	For removing comments: 0 + dW
+							then '.' dot to repeat it
+							
+2. covert text to new-text
+
+text.txt:
+--------
+hi,
+hello,
+how,
+are,
+you,
+
+new-text.txt:
+------------
+, hi
+, hello
+, how
+, are
+, you
+
+Ans: 1) add commas in the front: I + , + space + ESC : then dot to repeat
+	 2) delete commas in the end: A + backspace + ESC : then dot to repeat
+
+
+	 
+Intermediate Vim -> https://www.youtube.com/watch?v=v0W7JkzQAzA
+00:03 -> welcome
+01:44 -> subject
+02:24 -> topics not covered
+03:38 -> what is vim?
+04:28 -> composability
+05:54 -> uncommon motions
+11:55 -> more uncommon motions
+12:17 -> anti-patterns, avoid them before making habit
+16:02 -> fixing some common annoyances
+17:25 -> copy and paste commands
+21:02 -> common registers
+23:14 -> important registers
+26:04 -> read-only registers
+29:12 -> macros
+31:34 -> multiple files
+33:28 -> buffers
+35:21 -> using buffers
+35:24 -> windows
+37:07 -> tabs
+37:52 -> syntax completion
+39:25 -> program completion
+41:47 -> other completions
+42:52 -> digraphs or special characters
+44:50 -> templates
+45:56 -> snippets
+47:06 -> plugins and manager
+49:04 -> useful plugins
+52:04 -> navigation
+57:20 -> using vim to test
+1:01:10 -> other cool commands
+1:02:44 -> further resources
+
 issue with delete key
 ESC from INSERT, moves the CURSOR to one space LEFT
 how to identify tabs and paragraphs
 what are !,registers,plugins,folds,scripts,syntax_files,text-objects,marks,dotfiles,plugin-manager,macros,tab?
-relative numbering of lines
+what are buffers,windows,snippets,cntl+x,leaderkey,spell-check,vimdiff,auto-spell-check?
 zoom-in and zoom-out
 color column, guideline to limit the line
 programming the editor, vimscript, our own functions
 edit compressed zip files
-spell check, vimdiff, auto spell correction
-what are buffers?
-what are leader keys?
 .viminfo file maintains your history, what you did to it, all movements
 task-> change tail commas to leading commas without arrow keys
 $ vimtutor
+people call exclamation char (!) as BANG on the linux front
 
-http://vim-adventures.com/quiz/	-- free quiz
+HelpFul Resources:
+
+Interactive:
+===========
+http://www.openvim.com/			-- good online tutorial
+http://vim-adventures.com/quiz/	-- free vim test
+http://www.vimgenius.com/lessons/vim-intro			-- free vim quiz
 http://vim-adventures.com/	-- an amazing game asks you to learn many things, first 3 levels free
+
+WEB:
+===
 http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/
 http://stackoverflow.com/questions/7579213/is-there-an-interactive-way-to-learn-vim
 http://vimhelp.appspot.com/vim_faq.txt.html
+http://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim
+
+VIDEOS:
+======
 https://www.youtube.com/user/sopier/videos		-- good vim/bash/emacs tutorials
-read the comments, they are adding a lot of value to VIM in blogs and websites
 https://www.youtube.com/watch?v=wlR5gYd6um0		-- mastering vim, great talk
-http://www.vimgenius.com/lessons/vim-intro			-- vim quiz
+https://www.youtube.com/watch?v=v0W7JkzQAzA		-- intermediate vim
+read the comments, they are adding a lot of value to VIM in blogs and websites
+
+
+CHEAT SHEET:
+===========
+http://www.worldtimzone.com/res/vi.html			-- cheat sheet
+http://tnerual.eriogerg.free.fr/vimqrc.html		-- big cheat sheet
+http://www.viemu.com/vi-vim-cheat-sheet.gif		-- this is important cheat sheet
+http://naleid.com/blog/2010/10/04/vim-movement-shortcuts-wallpaper/		--good one
+
+VIM Distribution = vimrc + vimplugins:
+=====================================
+https://github.com/tpope/vim-sensible
+https://github.com/spf13/spf13-vim
+
+COLORSCHEME:
+===========
+https://github.com/flazz/vim-colorschemes
+
+VIMRC:
+======
+https://code.tutsplus.com/articles/top-10-pitfalls-when-switching-to-vim--net-18113
+
+found excellen linux quiz here:
+http://teaching.idallen.com/cst8207/14w/notes/week04notes.html#midterm-test-1
+
+Resources:
+01. Quizlet
+02. Android App
+03. StackOverFlow
+04. Quora
+05. VimCasts
+06. YouTube
+07. Other VIMRC
+08. 
+09.
+10.
+
+99 -> tips + 1 -> plugin
 
 VIM - Bram Moolenaar, 1991
 VI  - Bill Joy, 1976 
@@ -619,71 +875,3 @@ j
 o
 who do.
 <ESC>	--79
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
