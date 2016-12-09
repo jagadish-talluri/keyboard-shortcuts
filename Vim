@@ -15,6 +15,7 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	d) ge moves to the end of previous word
 	e) w moves to the start of next word
 	f) e moves to the end of current/next word
+	h) w <> b ; e <> ge ; opposites
 4. Navigation Movements With Numbers
 	a) 3W is same as pressing W three times.
 	b) 5E is same as pressing E five times.
@@ -123,7 +124,9 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	c) cntl+ww to switch between splits
 	d) cntl+w + j, switch to down split (other directions also valid)
 	e) :q, quit the window
-	f) :on, quit all other windows
+	f) :on or :only, quit all other windows
+	g) :close or cntl+w THEN c, to close the window
+	h) cntl+w THEN o,  to close all windows except the one you are in
 22. APPEND, a A, similar to i, but directly takes you to the POSITION
 	a) a, append NEXT TO CURSOR
 	b) A, append at the END OF LINE
@@ -146,6 +149,9 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 26. EXTERNAL output, RETRIEVE or READ command, AWESOME command
 	a) :r filename, prints that filename output below the cursor
 	b) :r! ls, prints the commands output below the cursor
+	c) :$r filename, prints that filename output at the end of file
+	d) :0r filename, prints that filename output at the start of file
+	e) :/pattern/r filename, prints that filename output next to the pattern match in the file
 27. COPY, here its YANK
 	a) y, to copy
 	b) yw, copy one word
@@ -182,7 +188,7 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	i) "cntl+w" then "_", to maximize the height of current window
 	j) "cntl+w" then "r", to rotate the windows
 	j) "cntl+w" then "R", to rotate back the windows
-	k) "cntl+w" then "x", to exchange the current window with next one
+	k) "cntl+w" then "x", to exchange the current window with next one(swap windows)
 	l) :help cntl+w, to know all about the shortcuts about split windows
 31. INDENTS
 	a) >>, to indent
@@ -193,6 +199,7 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	f) cntl+d, to unindent in insert-mode
 	g) select + >, to indent in visual-mode/motions/text-objects
 	h) select + <, to unindent in visual-mode/motions/text-objects
+	i) :set shiftwidth=4, indent width when used tab, 4 is good for many programs, default is 8
 32. SELECT within SOMETHING, Suppose the cursor is on the first o of (map (+) ("foo")).
 	a) vi" → will select foo.
 	b) va" → will select "foo".
@@ -262,6 +269,14 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	k) 10|, goto tenth column
 	l) gj or gk to move cursor up/down on wrapped line text
 	m) 'g;' or 'g,' to move cursor in the last edit locations(recent changelist) back or forth
+	n) cntl+o, jump backward
+	o) cntl+i, jump forward
+	p) :jumps, get a list of jumps
+	q) ( or ), jump to next/prev sentence
+	r) { or }, jump to next/prev paragraph
+	s) gf, jump to file name under the cursor
+	t) :changes, get a list of all changes
+	u) g; and g,  ;; traverse forward and backward through changes
 41. OPEN command history buffer
 	a) ':help c' then cntl+f
 	b) q:, this can also open the command history
@@ -276,6 +291,8 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	c) gU, turns uppercase also works
 	d) gu, turns lowercase also works
 	e) ~, tilde is used to toggle one character's case
+	f) gUU, turns entire line into uppercase
+	g) guu, turns entire line into lowercase
 44. SUBSTITUE key s
 	a) s, deletes the character under cursor + enters into insert mode
 	b) 4s, deletes the characters under cursor till 4 next + enters into insert mode
@@ -291,6 +308,13 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	h) marks available from A-Z (upper case) in all files (global)
 	i) d'a, delete till mark-a, we can mix with motions
 	j) y'a, copy till mark-a
+	k) `', last cursor jump
+	l) `., last change
+	m) `^, last insert
+	n) `[, start of last change or yank
+	o) `], end of last change or yank
+	p) `<, start of last visual select
+	p) `>, end of last visual select
 46. DOT FILES, configuration files, .vimrc, get from friends and play
 	a) have plugin info, plugin manager info
 	b) start up scripts, keyboard hotkey mappings
@@ -317,9 +341,18 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 51. BUFFERS, they are just views
 	a) :ls, to show the list of buffers (open files in VIM)
 	b) :bn or :bnext, move to next buffer
-	c) :bp or :bprevious, move to previous buffer
+	c) :bp or :bprevious or :bprev, move to previous buffer
 	d) :e filename, open new file in this buffer
-	e) :bd, delete the current buffer
+	e) :bd or :bdelete, delete the current buffer
+	f) %, the current buffer
+	g) #, the alternate buffer
+	h) cntl+^, toggle between current and alternate buffers
+	i) :bfirst or :bf, switch to first buffer
+	j) :blast or :bl, switch to last buffer
+	k) :bN, example :b2 to switch to 2nd buffer, :b8 to switch to 8th buffer, numbered buffer
+	l) :bufdo, excecute and ex command on all buffers, example -> :bufdo q, to quit all buffers
+	m) :5,10bd, to delete buffers from 5 to 10
+	n) +, from the buffer list we can tell if a buffer is modified with this plus symbol
 52. REGISTERS, they are just handy clipboards
 	a) :reg, to show the list of registers
 	b) "ayy, copy the current line and put in register "a"
@@ -340,7 +373,7 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	f) can edit and put it back in that register again
 	g) :normal @q, apply macro q on visual selection
 	h) @@, to repeat last executed macro, similar to dot in macro world
-54. TABS, for layouts
+54. TABS, for layouts, for differnt workspaces
 	a) :tabe new-file, open new-file in a new tab
 	b) :tabnew, opens new tab
 	c) gt or :tabn, moves to next tab
@@ -351,6 +384,11 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	h) :tab drop {file}  open {file} in a new tab, or jump to a window/tab containing the file if there is one
 	i) :tab split        copy the current window to a new tab of its own
 	j) http://vim.wikia.com/wiki/Using_tab_pages
+	k) :windo lcd {path}, to scope a tab to a directory
+	l) cntl+w then T, to move the current window into new tab page
+	m) :tabc, close tab
+	n) :tabo, close all tabs but the one under use
+	o) :tabmove N, move/change position the tab N places
 55. FILTER, ! char is special meaning char
 	a) be in line 1, then '!10G', goes to 10th line with anticipation, 'sort' it sorts the selected text
 	b) !, we can use this to perform outside programs in side, select text is input to outside program
@@ -379,6 +417,57 @@ Readers are Leaders; Vimmers are Winners. - Jagadish Talluri
 	g) :argdo %s/sam/bob/g, to replace in all the files in arg
 	h) :arga names.rb, to add names.rb file to the arglist
 	i) :argd *, to clear the arglist
+	j) :next or :prev, traverse files in the argument list
+58. ABBREVIATE
+	a) :abbreviate jt Jagadish Talluri
+	b) when typing use jt<space>, it automatically places the desired text
+	c) :abbreviate ctinx CREATE TABLE IF NOT EXISTS, will be very useful
+	d) :abbreviate, shows the list of abbreviation available
+	e) :abbreviate rjt Regards,<newline>Jagadish Talluri, will be useful signature
+	f) :ab, is short form of abbreviate
+59. MAP
+	a) :map <F5> i{<Esc>ea}<Esc>, this will surround a word with curly brace when you press F5
+	b) :map, list down all the mappings available
+60. COMMAND-LINE-MODE OPTIONS CHECK
+	a) :set ignorecase, sets the option
+	b) :set ignorecase?, prints the option which was already set
+	c) :set ignorecase!, flips the option, reverse (! negates current value)
+	d) :set ignorecase&, set the option to default value
+	e) :set backspace?, show what it is set to
+	f) Q, enter into ex-mode or pure command line mode fully(cntlp & cntln wont work here)
+	g) :visual, to exit from ex-mode
+	h) :set all&, set all options to default
+	i) :set all, to sell all option values
+	j) :set ignorecase list number shiftwidth=4, we can set multiple values in one line ** very useful
+61. MAKE VIMRC magically
+	a) :mkvimrc new-file, create as new-file with all the settings in the session
+	b) :source new-file, will update the session with new settings
+	c) :version, shows the vimrc files used in the session in the middle of the junk
+	d) .exrc file is related to vi not vim, if you want to use full power of vim always use .vimrc file
+62. MODELINES, due to somereason not working
+	a) use to set vim configuration for particular file
+	b) vim:tw=78:ts=8:sw:8:rnu, makes vim read these lines as special line in the code only for settings
+	c) used to keep the particular file always open in those settings as per the author formatting, ex: help files
+	d) :set modeline or nomodeline, activaes / deactivates this option
+	e) you can customize vim settings for few files/directories/etc also
+63. AWESOME - COMMAND OPTIONS
+	a) :set timeoutlen, defalut to 1000(one sec) but change to 100, you see super response times
+	b) :set cmdheight=4, sets command mode height to 4 lines, default is 1 line height
+	c) :set showcmd, shows the command you are using at the last line (default is on)
+	d) :set showmode, shows the curren mode (visual/insert) , (default is on) dont turn off its difficult to notice
+	e) !!sh, to execute a line on vim as a shell command and place the output in vim buffer itself, good for presentation
+	f) !!bash, same as above with bash shell
+	g) !!$SHELL, same as above with current active environment shell
+	g) yyp!!sh, is a good way to have a copy of command and print/execute it
+	h) :map <F5> yyp!!sh<CR>, you can map it to F5 key for better speed		**this is awesome
+	i) :read !echo hello, print the hello in vim buffer
+	j) yy:@"<cr>, execute the current line (vim command) which is written on the buffer literally
+	k) :normal d4j, is a normal command to delete 4 following lines; :map <space>l yy:@"<cr>, so the written command executes when space+l is pressed
+64. OPEN FILE at a specific line
+	a) vi +5 some-file, opens some-file and places cursor at line 5
+	a) vi +0 some-file, opens some-file and places cursor at line 0
+	a) vi +$ some-file, opens some-file and places cursor at last line
+	a) vi +/xyz some-file, opens some-file and places cursor at pattern match line
 	
 NOTE: There are 
 		  NO Icons
@@ -390,6 +479,8 @@ NOTE: There are
 		, NO familiar shortcuts, cntl+c!=copy, cntl+x!=cut, cntl+z!=undo
 		, NO GUI, NO Pointers
 		, NO ToolTips, NO Guides
+		, NO Drag N Drop
+		, NO Trackpad Gestures
 	Other editors have shortcuts to do things. Here we have to do everything with shortcuts only.
 	VIM is more of a language for editing.
 	
@@ -500,6 +591,43 @@ TIPS MANIA:
 	e) q/, opens a window of search patters used till now
 	f) %, short hand name for file name in command line mode
 	g) :read!ls, paste the output of a command in the buffer (use any command)
+	h) cntl+v, in command mode allows vim to capture the key's code instead of executing it, <Esc> as ^[
+17. Findings by doing
+	a) Underscore is not speacial character. VIM considers it like normal letter. w or W works same.
+	b) x or delete-key deletes in forward direction. But if the line is ended then it deletes backward. careful.
+	c) when you copy entire line with Y or yy. Pasting it actually pastes in new line. imp. not appends.
+	d) cntl+o in insert mode, put the insert mode on halt and brings the normal mode for actions like undo(u) etc
+18. General Tips
+	a) yyp, duplicates a line
+	b) ddp, swap the below line to above line
+	c) xp, swap then next character with current character
+	d) 7p, pastes/puts 7 times
+	e) use marks instead of visual selection
+	f) Y == yy, copy entire line
+	g) D == d$, delete till end of line
+	h) C == c$, change till end of line
+	i) !!date, to put date in current line
+	j) !!ls, to put the list of file in current line
+	k) !10Gsort, to input 10 lines and replace them with sorted output
+	l) :vi new-file, exit current file and opens new-file
+	m) :vi! new-file, close current file without saving and opens new-file
+	n) :view new-file, exit current file and open new-file in read-only mode
+	o) :set autowrite, automatically saves the file when ever a change is made
+	o) :set noautowrite, opposite to auto write
+19. Multiple Files
+	a) vim a.txt b.txt c.txt, opens 3 files and land you one first file
+	b) :next, moves you to next file
+	c) :wnext, writes/saves current file and moves to next file
+	d) :next!, to move to next file without saving the current one
+	e) :2next or :2 next, to move to 2nd file
+	f) :args, shows the list of files being opened, current file appears with [] brackets
+	g) :previous or :Next, takes you to previous file
+	h) :wprevious or :wNext, write the current file and takes you to previous file
+	i) :first or :rewind, takes you to the first file
+	j) :last, takes you to the last file
+	k) cntl+^, switch the files when parallelly editing 2 text files; will get error if only one file is edited
+20. BASH opearations, to move the cursor in insert mode, need to add from LFY magazine
+	
 	
 	
 	
@@ -599,6 +727,13 @@ edit compressed zip files
 task-> change tail commas to leading commas without arrow keys
 $ vimtutor
 people call exclamation char (!) as BANG on the linux front
+how to see edit log for a particular file in VIM? edits happend noted in a file.
+what are ctags?
+how to get help?
+vim plugins: (as mentioned in mastering vim) leader key
+	summary, commentary, replace with register,title case, sort-motion, system-copy
+	custom text objects: indent, entire, line, ruby block
+cntl+z, is it aborting vim process, and exiting vim?
 
 HelpFul Resources:
 
@@ -621,6 +756,9 @@ VIDEOS:
 https://www.youtube.com/user/sopier/videos		-- good vim/bash/emacs tutorials
 https://www.youtube.com/watch?v=wlR5gYd6um0		-- mastering vim, great talk
 https://www.youtube.com/watch?v=v0W7JkzQAzA		-- intermediate vim
+
+
+https://www.youtube.com/user/visuellegedanken/playlists		-- 12 how to vids
 read the comments, they are adding a lot of value to VIM in blogs and websites
 
 
@@ -639,6 +777,18 @@ https://github.com/spf13/spf13-vim
 COLORSCHEME:
 ===========
 https://github.com/flazz/vim-colorschemes
+
+LINKS from mastering vim by thoughtbot:
+=======================================
+https://medium.com/@mkozlows/why-atom-cant-replace-vim-433852f4b4d1#.8xknq76vn	-- composability
+http://blog.carbonfive.com/2011/10/17/vim-text-objects-the-definitive-guide/
+http://benmccormick.org/2014/07/02/learning-vim-in-2014-vim-as-language/
+http://benmccormick.org/learning-vim-in-2014/		-- index of vim posts, good one
+http://www.moolenaar.net/habits.html		-- bram moolenar 7 habits
+http://usevim.com/2013/02/20/configuration/
+https://github.com/kana/vim-textobj-user/wiki
+https://github.com/tpope/vim-surround
+http://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim	-- grok vi
 
 VIMRC:
 ======
